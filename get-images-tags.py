@@ -12,6 +12,9 @@ source_repository = "nextcloud"
 target_registry = "depuits"
 target_repository = "nextcloud-ffmpeg"
 
+target_registry_ghcr = "ghcr.io/depuits"
+target_repository_ghcr = "nextcloud-ffmpeg"
+
 # Tags to build
 tag_regex = re.compile(r"^(?:\d+(?:\.\d+)?(?:\.\d+)?|latest|stable)$")
 only_newer_than = datetime(2025, 1, 1, tzinfo=timezone.utc)
@@ -77,7 +80,10 @@ for tag in tags_to_build:
     name = tag["name"]
     if digest not in image_hash_to_tags:
         image_hash_to_tags[digest] = []
-    image_hash_to_tags[digest].append(f"{target_registry}/{target_repository}:{name}")
+    image_hash_to_tags[digest].extend([
+        f"{target_registry}/{target_repository}:{name}",
+        f"{target_registry_ghcr}/{target_repository_ghcr}:{name}",
+    ])
 
 
 print(
