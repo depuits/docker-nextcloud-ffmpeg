@@ -9,7 +9,7 @@ import json
 source_registry = "library"
 source_repository = "nextcloud"
 
-target_registry = "lunyaadev"
+target_registry = "depuits"
 target_repository = "nextcloud-ffmpeg"
 
 # Tags to build
